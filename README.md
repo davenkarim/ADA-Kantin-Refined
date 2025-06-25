@@ -1,78 +1,89 @@
 # 🍽️ ADA Kantin
 
-ADA Kantin is a fully offline iOS app developed using **Swift** and **SwiftUI**, designed to help learners at the Apple Developer Academy @ BINUS (GOP 9) quickly discover meals based on their preferences—without having to walk around searching and asking tenants repeatedly.
+ADA Kantin is a fully offline iOS app developed using **Swift** and **SwiftUI**, now refactored with a **Model-View-ViewModel (MVVM)** architecture. It helps learners at the Apple Developer Academy @ BINUS Tangerang (GOP 9) quickly discover and decide which meals to eat — enhanced with **Siri** and **Shortcuts integration** for hands-free experience.
 
 ## 💡 Project Background
 
-This project was part of a challenge to *elevate daily life at GOP 9*. Our team identified a recurring user pain point: many learners waste valuable time searching for food that matches their preferences (halal, healthy, allergen-free, affordable). 
+This app originated from a challenge to *elevate the people's daily life at GOP*. We identified that learners in the academy often wasted valuable time searching for meals that matched their preferences (halal, healthy, allergen-free, affordable).
 
-The solution was to provide a quick, clean, and simple interface to access food stall data—including menus, prices, and ingredients category in one place, offline.
+Initially designed for fast, offline access to canteen data, **ADA Kantin** has evolved to support **voice-based searching**, allowing users to focus on their work without needing to physically browse or interact with the app.
 
-## 🧠 Problem-Solving Approach
+## 🧠 Problem-Solving & Design Approach
 
-We followed a **design thinking process**, which included:
+The project followed a **design thinking process**, including:
 - Conducting interviews and analyzing feedback
 - Creating user personas based on motivations and pain points
 - Ideating with *How Might We* and Crazy 8 methods
-- Designing low-fidelity sketches and HIG-compliant wireframes
-- Validating ideas with concept testing before implementation
+- Designing low- and high-fidelity prototypes based on Apple Human Interface Guidelines
+- Validating concepts via user testing
 
-I translated these validated ideas into code using native SwiftUI components, focusing on clean structure and reusability. I worked with static data models due to offline restrictions and beginner-level experience.
+The app design now prioritizes:
+- **MVVM architecture** for clean separation of concerns and easier maintenance
+- **Siri Shortcuts support** so users can order food with voice commands
+- Enhanced modularity to support future features
 
 ## 🛠️ Tech Stack
 
-| Area        | Tech Used         |
-|-------------|-------------------|
-| Language    | Swift             |
-| Framework   | SwiftUI           |
-| Data Model  | Static Swift structs (no JSON, no API) |
-| UI Design   | Figma (based on Apple Human Interface Guidelines) |
+| Area         | Tech Used                          |
+|--------------|------------------------------------|
+| Language     | Swift                              |
+| Framework    | SwiftUI                            |
+| Architecture | Model-View-ViewModel (MVVM)        |
+| Data Model   | Static Swift structs (no JSON/API) |
+| Voice        | SiriKit, Shortcuts API             |
+| UI Design    | Figma (Prototype: https://www.figma.com/proto/evs5ehEUXGyBGKK5Hev7Dh/Experience-Challenge---Daven-Karim?page-id=2018%3A406&node-id=2109-5003&viewport=111%2C381%2C0.4&t=oxxR18msuRsUaQPB-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2109%3A4760) |
 
 ## 🧩 App Architecture
 
-The app is divided into modular Swift files with clearly defined responsibilities:
+The codebase is structured in MVVM with dedicated components:
 
-- `ContentView.swift`: Serves as the main container that combines both the Food and Tenant views. It includes a navigation bar setup and applies the global accent color for the app's UI.
-- `FilterView.swift`: Contains the logic for filtering models. This file does not render any view directly but supports the filtering mechanism used across the app.
-- `Food.swift`: Manages the entire food-related interface and logic, including the main food view, food card component, food detail view, filter handling, and the food filter view.
-- `SplashScreen.swift`: Implements the app's splash screen displayed at launch to create a polished and branded entry point.
-- `SumberData.swift`: Acts as the central hub for all static data, containing hardcoded information about food items and tenants due to offline restrictions.
-- `Tenant.swift`: Handles the tenant listing view, filtering logic, the tenant filter interface, and the detail view for each food stall.
+- `ContentView`: Root container, combines Tenant and Food views with unified navigation.
+- `TenantView`, `TenantViewModel`, `TenantModel`: Handle tenant display, filtering, and logic.
+- `FoodView`, `FoodViewModel`, `FoodModel`: Manage food listing, details, and filter.
+- `SplashScreen`: Entry splash screen for branding.
+- `DataHelper`: Central hub for static data (food and tenant items).
+- `Set+Extensions`: Utility extensions for cleaner SwiftUI code.
+- `SiriIntegration`: Handles intent definitions, shortcut creation, and Siri interactions.
 
-Each file is designed with modularity in mind, making the codebase easier to maintain and scale—even as a beginner.
-
-Navigation is built using native SwiftUI `NavigationStack`, ensuring smooth flow between pages. All views are composed with SwiftUI's declarative syntax to keep layout concise and readable.
+Navigation is handled with `NavigationStack`, ensuring smooth transitions. Views are declarative, modular, and easy to extend.
 
 ## ✨ Features
 
-- View a full list of food and tenants in the GOP 9 canteen
-- See detailed menu items with pricing and ingredients info
-- 100% offline—no internet needed at all
-- Clean, simple UI with smooth navigation
+- Browse a full list of food and tenants in GOP 9 canteen
+- View detailed menus with prices and ingredient categories
+- 100% offline — works without internet access
+- Hands-free searching via Siri and Shortcuts
+- MVVM-based code structure for better maintainability
+
+## 🗣️ Siri & Shortcuts
+
+We added **Siri Shortcut support** to enable:
+- Quick food ordering using predefined voice commands
+- Customizable user phrases for favorite food/tenant combos
+- Seamless integration with system Shortcuts app
+
+This feature is designed for busy learners who want to find foods without touching their device, helping them stay focused on their work.
 
 ## 🧪 Challenges & Learning
 
-As a beginner, I learned how to:
-- Structure reusable views in SwiftUI
-- Manage static data efficiently using Swift structs
-- Follow Apple's HIG to build familiar and user-friendly interfaces
-- Translate user research into working code
-- Organize code files to keep logic modular and readable
-
-I chose not to use JSON or APIs in this version due to my current skill level, but plan to refactor the data model in the future for scalability.
+From this version, I learned to:
+- Refactor code into MVVM cleanly
+- Integrate SiriKit and Shortcuts API into a SwiftUI app
+- Design intent definitions that match user mental models
+- Modularize the codebase for easier future updates
 
 ## 🗺️ Future Improvements
 
-- Implement JSON-based data parsing for easier updates
-- Save user preferences or recent selections locally
-- Animate transitions for better user experience
+- Migrate static data to JSON or API-based source
+- Add local storage for user preferences
+- Improve Siri Shortcut customization (dynamic suggestions)
+- Improve Siri Feedback Response for richer UI experience
 
-## 🙋‍♂️ Authors
+## 🙋‍♂️ Author
 
-**Daven Karim** || **Alvin Justine** || **Alya Salsabila Haristian**
+**Daven Karim**  
 Apple Developer Academy @ BINUS
 
 ---
 
-*This project was our first major SwiftUI app, built fully from scratch based on real user research. It represents not just our code, but our understanding of how to translate user needs into a product.*
-
+*This project reflects not only code and design skills, but a continuous effort to translate user needs into practical, innovative solutions.*
