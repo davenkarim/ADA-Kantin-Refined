@@ -64,6 +64,18 @@ We added **Siri Shortcut support** to enable:
 
 This feature is designed for busy learners who want to find foods without touching their device, helping them stay focused on their work.
 
+## 📱 UI
+
+<img src="Documentation/Siri1.png" width="300"/>
+
+<img src="Documentation/Siri2.png" width="300"/>
+
+<img src="Documentation/Food.png" width="300"/>
+
+<img src="Documentation/Tenant.png" width="300"/>
+
+<img src="Documentation/Filter.png" width="300"/>
+
 ## 🧪 Challenges & Learning
 
 From this version, I learned to:
